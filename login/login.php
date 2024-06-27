@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$dsn = "mysql:host=127.0.0.1; dbname=threerings; charset=utf8";
+$dsn = "mysql:host=localhost; dbname=threerings; charset=utf8";
 $username = "root";
 $password = "";
 $mail = $_POST['mail'];
@@ -38,7 +38,7 @@ if (password_verify($pass, $member['pass'])) {
 
 if ($member && password_verify($pass, $member['pass'])) {
     // DBのユーザー情報をセッションに保存
-    $_SESSION['id'] = true;
+    $_SESSION['login'] = true;
     $_SESSION['name'] = $member['name'];
     header("Location: ../main/main.php"); // ログインが成功したらmainmanu.htmlにリダイレクト
     exit();

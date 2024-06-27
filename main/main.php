@@ -10,7 +10,7 @@ if(isset($_SESSION['login'])==false){
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$servername = "172.16.3.130"; // データベースサーバーのIPアドレスまたはホスト名
+$servername = "localhost"; // データベースサーバーのIPアドレスまたはホスト名
 $username = "root"; // データベースユーザー名
 $password = ""; // データベースパスワード
 $dbname = "threerings"; // データベース名
