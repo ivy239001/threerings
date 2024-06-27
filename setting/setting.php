@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['login'])==false){
     print'ログインされていません。<br/>';
-    print'<a href="../login/login.php">ログイン画面へ</a>';
+    print'<a href="../login/login_form.php">ログイン画面へ</a>';
     exit();
 }
 
