@@ -40,7 +40,7 @@ if ($member && password_verify($pass, $member['pass'])) {
     // DBのユーザー情報をセッションに保存
     $_SESSION['id'] = $member['id'];
     $_SESSION['name'] = $member['name'];
-    header("Location: mainmanu.html"); // ログインが成功したらmainmanu.htmlにリダイレクト
+    header("Location: ../main/main.php"); // ログインが成功したらmainmanu.htmlにリダイレクト
     exit();
 } else {
     $msg = 'ログインできないよ！';
