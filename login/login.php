@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$dsn = "mysql:host=127.0.0.1; dbname=threerings; charset=utf8";
+$dsn = "mysql:host=localhost; dbname=threerings; charset=utf8";
 $username = "root";
 $password = "";
 $mail = $_POST['mail'];
