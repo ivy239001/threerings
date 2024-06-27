@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        /* ローディング画面のスタイル */
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #212121; /* ダークな背景色 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #64FFDA; /* タイピングコードっぽい色に設定 */
+            overflow: hidden;
+            /* 文字が画面外にはみ出さないように */
+        }
+
+        .loading-text {
+            font-size: 20px;
+            white-space: pre-wrap;
+            /* 文字列中の改行やスペースを保持 */
+        }
+
+        .loading-text pre {
+            margin: 0;
+        }
+
+        .cursor {
+            display: inline-block;
+            vertical-align: middle;
+            animation: blink 0.8s ease-in-out infinite; /* カーソルの点滅アニメーション */
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-text">
+        <pre><code id="code">// AKAHAZARD Login check
+function username_check() {
+    ***********
+}
+username_OK
+function mailadress_check() {
+    ***********
+}
+mailadress_OK
+
+function pass_check() {
+    ***********
+}
+pass_OK
+
+LOGIN SUCSESS
+Good_luck();
+<span class="cursor">_</span></code></pre> <!-- カーソル -->
+    </div>
+    <script>
+        // タイピングの速度でコードを表示する関数
+        function typeCode() {
+            const codeElement = document.getElementById('code');
+            const codeText = codeElement.textContent.trim(); // コード内の余分なスペースを除去
+            codeElement.textContent = ''; // コードをクリア
+
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < codeText.length) {
+                    codeElement.textContent += codeText.charAt(index++);
+                } else {
+                    clearInterval(interval);
+                }
+            }, 20); // *0ミリ秒ごとに実行
+
+            // 2秒後にリンク先へ移動
+            setTimeout(() => {
+                window.location.href = 'index.html'; // リダイレクト先のURLを設定
+            }, 6000);
+        }
+
+        // ページが読み込まれた後にタイピングの速度でコードを表示する
+        window.onload = typeCode;
+    </script>
+</body>
+</html>
