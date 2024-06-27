@@ -1,27 +1,50 @@
-ul {
-	width: 200px;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	background-color: #eeeeee;
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../graphic/lost.jpg'); /* 背景画像を指定します */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: #d4af37; /* ゴールド色 */
+    text-align: center;
 }
-li a {
-	display: block;
-	padding: 8px 16px;
-	text-decoration: none;
-	color: #000000;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); /* 背景を暗くする */
 }
-li {
-	text-align: center;
+
+.menu {
+    margin-top: 20px;
 }
-li:last-child {
-	border-bottom: none;
+
+.menu a {
+    display: block;
+    font-size: 2em;
+    margin: 10px 0;
+    color: #d4af37;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px #000000;
 }
-li a.active {
-	color: #ffffff;
-	background-color: #da3c41;
+
+.menu a:hover {
+    color: #fff;
 }
-li a:hover:not(.active) {
-	color: #ffffff;
-	background-color: #1b2538;
+
+.rings {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
 }
+
+.rings div {
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+    border-radius: 50%;
+}
+

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$dsn = "mysql:host=127.0.0.1; dbname=threerings; charset=utf8";
+$dsn = "mysql:host=localhost; dbname=threerings; charset=utf8";
 $username = "root";
 $password = "";
 $mail = $_POST['mail'];
@@ -19,7 +19,7 @@ $sql = "SELECT * FROM login_02 WHERE mail = :mail";
 $stmt = $dbh->prepare($sql);
 $stmt->bindValue(':mail', $mail);
 $stmt->execute();
-$member = $stmt->fetch(PDO::FETCH_ASSOC);
+$member = $stmt->fetch();
 
 // デバッグ用コード：取得したユーザーデータを確認
 if ($member === false) {
@@ -38,12 +38,12 @@ if (password_verify($pass, $member['pass'])) {
 
 if ($member && password_verify($pass, $member['pass'])) {
     // DBのユーザー情報をセッションに保存
-    $_SESSION['id'] = $member['id'];
+    $_SESSION['login'] = true;
     $_SESSION['name'] = $member['name'];
-    header("Location: mainmanu.html"); // ログインが成功したらmainmanu.htmlにリダイレクト
+    header("Location: ../main/main.php"); // ログインが成功したらmainmanu.htmlにリダイレクト
     exit();
 } else {
-    $msg = 'ログインできないよ！';
+    $msg = 'ログインできないよ!!';
     $link = '<a href="login_form.php">戻る</a>';
     show_message_and_exit($msg, $link);
 }
