@@ -8,40 +8,8 @@
     <link rel="stylesheet" href="TemplateData/style.css">
     <!-- 自作のCSSファイルを追加 -->
     <link rel="stylesheet" href="styles.css">
-    <?php
-
-    $servername = "172.16.3.130"; // データベースサーバーのIPアドレスまたはホスト名
-    $username = "ivy_c239001"; // データベースユーザー名
-    $password = ""; // データベースパスワード
-    $dbname = "threerings"; // データベース名
-    $port = 3306; // データベースのポート番号
-    
-    // データベース接続の作成
-    $conn = new mysqli($servername, $username, $password, $dbname, $port);
-    
-    // 接続チェック
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    
-
-    // ユーザー名を取得するクエリ
-    //$user_id = 1; // 例としてユーザーIDを1とします
-    $sql = "SELECT name FROM login_02 WHERE mail = $mail";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // 結果を連想配列として取得
-        $row = $result->fetch_assoc();
-        $username = $row["name"];
-    } else {
-        $username = "Unknown";
-    }
-
-    $conn->close();
-    ?>
-    <!-- PHPで取得したユーザー名を基にviewportを設定 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- ビューポート設定 -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
 </head>
 <body>
     <!-- メインコンテナを追加して、Unityコンテナとサイドバーを含める -->
@@ -65,8 +33,8 @@
         <div id="sidebar">
             <div class="userinfo">
                 <div>マイページ</div>
-                <div>ユーザー名：<?php echo $username; ?></div>
-                <!-- 他のユーザー情報も必要に応じて表示 -->
+                <div>ユーザー名：xxx</div>
+                <div>ログイン回数：xxx</div>
             </div>
             <div class="rules">ルール説明</div>
             <div class="back">メニューへ戻る</div>
