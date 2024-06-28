@@ -35,16 +35,26 @@ if ($conn->connect_error) {
     <title>ThreeRings</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        // BGMの制御用の関数と変数
         var bgm = new Audio('../audio/BBBBダンス.mp3'); // BGMファイルのパスを指定してください
         var isMuted = false; // 音声がミュートされているかどうかの状態を管理
+        var isPlaying = false; // BGMが再生中かどうかの状態を管理
 
-        // ページ読み込み時にBGMを再生
+        // ページ読み込み時にBGMを準備
         window.onload = function() {
             bgm.loop = true; // BGMをループ再生
             bgm.volume = 0.5; // 初期音量を設定 (0から1の範囲で設定可能)
-            bgm.play(); // BGMを再生
         };
+
+        // BGMの再生/停止を切り替える関数
+        function toggleBGM() {
+            if (isPlaying) {
+                bgm.pause(); // 再生中なら停止
+                isPlaying = false;
+            } else {
+                bgm.play(); // 停止中なら再生
+                isPlaying = true;
+            }
+        }
 
         // 音量調整の関数
         function setVolume(volume) {
@@ -75,7 +85,7 @@ if ($conn->connect_error) {
         </div>
         <!-- 音声コントロールパネル -->
         <div class="audio-control">
-            <button onclick="toggleMute()">音声ON/OFF</button>
+            <button onclick="toggleBGM()">BGM ON/OFF</button>
             <input type="range" min="0" max="100" value="50" oninput="setVolume(this.value)">
         </div>
     </div>
