@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // クエリの実行
     if ($stmt->execute()) {
-        echo "情報が更新されました。<br>";
-        echo "<a href='main.php'>main.phpへ戻る</a>";
+        header("Location: update_success.php");
+        exit();
     } else {
         echo "エラー: " . $stmt->error;
     }
