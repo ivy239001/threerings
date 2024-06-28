@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h2>パスワード変更</h2>
-    <form method="post" action="pass.php">
+    <form method="post" action="pass_success.php">
         <input type="hidden" name="name" value="<?php echo htmlspecialchars($name); ?>">
         <input type="hidden" name="mail" value="<?php echo htmlspecialchars($mail); ?>">
         <label for="new_password">新しいパスワード:</label>

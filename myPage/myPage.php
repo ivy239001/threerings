@@ -1,6 +1,6 @@
 <?php
 // session_start();
-// if(isset($_SESSION['login'])==false){
+// if(isset($_SESSION['login']) == false){
 //     print'ログインされていません。<br/>';
 //     print'<a href="../login/login_form.php">ログイン画面へ</a>';
 //     exit();
@@ -36,6 +36,13 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>myPage</title>
+    <script>
+        function confirmDelete(name, mail) {
+            if (confirm(`本当にユーザー ${name} (${mail}) を削除しますか？`)) {
+                window.location.href = `delete.php?name=${name}&mail=${mail}`;
+            }
+        }
+    </script>
 </head>
 <body>
     <h2>myPage情報</h2>
@@ -49,7 +56,7 @@ $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             // 出力データを行ごとに処理
             while($row = $result->fetch_assoc()) {
-                echo "<tr><td>" . htmlspecialchars($row["name"]) . "</td><td>" . htmlspecialchars($row["mail"]) . "</td><td><a href='edit.php?name=" . htmlspecialchars($row["name"]) . "&mail=" . htmlspecialchars($row["mail"]) . "'>編集</a></td></tr>";
+                echo "<tr><td>" . htmlspecialchars($row["name"]) . "</td><td>" . htmlspecialchars($row["mail"]) . "</td><td><a href='edit.php?name=" . htmlspecialchars($row["name"]) . "&mail=" . htmlspecialchars($row["mail"]) . "'>編集</a> | <a href='javascript:void(0);' onclick=\"confirmDelete('" . htmlspecialchars($row["name"]) . "', '" . htmlspecialchars($row["mail"]) . "')\">削除</a></td></tr>";
             }
         } else {
             echo "<tr><td colspan='3'>データがありません</td></tr>";
