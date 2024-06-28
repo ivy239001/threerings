@@ -9,19 +9,21 @@
     <!-- 自作のCSSファイルを追加 -->
     <link rel="stylesheet" href="styles.css">
     <?php
-    // ユーザー名をデータベースから取得する例
-    $servername = "localhost";
-    $username = "username";
-    $password = "password";
-    $dbname = "database_name";
 
-    // データベース接続
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // 接続確認
+    $servername = "localhost"; // データベースサーバーのIPアドレスまたはホスト名
+    $username = "root"; // データベースユーザー名
+    $password = ""; // データベースパスワード
+    $dbname = "threerings"; // データベース名
+    $port = 3306; // データベースのポート番号
+    
+    // データベース接続の作成
+    $conn = new mysqli($servername, $username, $password, $dbname, $port);
+    
+    // 接続チェック
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+    
 
     // ユーザー名を取得するクエリ
     $user_id = 1; // 例としてユーザーIDを1とします
