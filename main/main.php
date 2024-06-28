@@ -39,7 +39,7 @@ if ($conn->connect_error) {
     <div class="container">
     <img src="../graphic/logo.jpg" alt="ThreeRing Logo" class="title-logo">
         <div class="menu">
-            <a href="../setting/setting.php">⚙ MyPage</a>
+            <a href="../myPage/myPage.php">⚙ MyPage</a>
         </div>
         <div class="menu">
             <a href="../play/index.html">OffLine Play</a>
