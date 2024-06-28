@@ -3,8 +3,8 @@
 $name = $_POST['name'];
 $mail = $_POST['mail'];
 $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT); // 変数名を $pass から $pw に変更
-$dsn = "mysql:host=127.0.0.1; dbname=threerings; charset=utf8";
-$username = "root";
+$dsn = "mysql:host=172.16.3.130; dbname=threerings; charset=utf8";
+$username = "ivy_c239001";
 $password = "";
 try {
     $dbh = new PDO($dsn, $username, $password);
