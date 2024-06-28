@@ -71,3 +71,17 @@ a.delete-link {
     color: red; /* 赤色に設定 */
 }
 
+/* 戻るボタンのスタイル */
+.back-button button {
+    background-color: #ae6200; /* ボタンのデフォルトの背景色 (青) */
+    color: white; /* ボタンのデフォルトの文字色 (白) */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 色の変化をスムーズにする */
+}
+
+/* ボタンにマウスが乗った時のスタイル */
+.back-button button:hover {
+    background-color: #6c4800; /* マウスが乗った時の背景色 (濃い青) */
+}
