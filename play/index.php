@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="styles.css">
     <?php
 
-    $servername = "localhost"; // データベースサーバーのIPアドレスまたはホスト名
-    $username = "root"; // データベースユーザー名
+    $servername = "172.16.3.130"; // データベースサーバーのIPアドレスまたはホスト名
+    $username = "ivy_c239001"; // データベースユーザー名
     $password = ""; // データベースパスワード
     $dbname = "threerings"; // データベース名
     $port = 3306; // データベースのポート番号
@@ -26,8 +26,8 @@
     
 
     // ユーザー名を取得するクエリ
-    $user_id = 1; // 例としてユーザーIDを1とします
-    $sql = "SELECT name FROM users WHERE user_id = $user_id";
+    //$user_id = 1; // 例としてユーザーIDを1とします
+    $sql = "SELECT name FROM login_02 WHERE mail = $mail";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
