@@ -21,26 +21,29 @@ $stmt->bindValue(':mail', $mail);
 $stmt->execute();
 $member = $stmt->fetch();
 
-// デバッグ用コード：取得したユーザーデータを確認
 if ($member === false) {
     $msg = 'メールアドレスが見つかりません';
     $link = '<a href="login_form.php">戻る</a>';
     show_message_and_exit($msg, $link);
 }
 
-// デバッグ用コード：パスワードが正しいか確認
 if (password_verify($pass, $member['pass'])) {
-    echo "パスワードが正しいです";
-} else {
-    echo "パスワードが間違っています";
-    echo $member['pass'];
-}
-
-if ($member && password_verify($pass, $member['pass'])) {
     // DBのユーザー情報をセッションに保存
     $_SESSION['login'] = true;
     $_SESSION['name'] = $member['name'];
-    header("Location: ../main/main.php"); // ログインが成功したらmainmanu.htmlにリダイレクト
+
+    // 現在のログイン回数を取得し、1を追加
+    $logtimes = $member['logtimes'] + 1;
+
+    // 更新クエリの準備
+    $sql_update = "UPDATE login_02 SET logtimes = :logtimes WHERE mail = :mail";
+    $stmt_update = $dbh->prepare($sql_update);
+    $stmt_update->bindValue(':logtimes', $logtimes, PDO::PARAM_INT);
+    $stmt_update->bindValue(':mail', $mail);
+    $stmt_update->execute();
+
+    // ログインが成功したらmainmanu.htmlにリダイレクト
+    header("Location: ../main/main.php");
     exit();
 } else {
     $msg = 'ログインできないよ!!';
