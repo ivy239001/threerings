@@ -1,26 +1,44 @@
-body {
+body { 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     margin: 0;
+    /* 背景画像の設定 */
+    background-image: url('../graphic/library.jpg');
+    background-size: cover; /* 画像を要素に合わせて表示 */
+    background-position: center; /* 画像を中央に配置 */
+
+/* 文字色と影を設定 */
+color: rgb(255, 255, 255); /* 色に設定 */
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 水平方向のずれ, 垂直方向のずれ, ぼかしの大きさ, 影の色 */
+
 }
 
+/* テーブルのスタイル */
 table {
     border-collapse: collapse;
     width: 50%;
     margin-bottom: 20px;
 }
 
+/* テーブルのヘッダー */
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
 
+/* テーブルのヘッダーの背景色 */
 th {
-    background-color: #f2f2f2;
+    background-color: #5f400e; /* 茶色 */
+}
+
+/* データ行の背景色 */
+tr.data-row {
+    background-color: rgb(65, 65, 65); /* 黒色に設定 */
+    color: white; /* 文字色を白に設定 */
 }
 
 .back-button {
@@ -36,3 +54,20 @@ form {
 label, input, button {
     margin: 5px;
 }
+
+/* リンクのデフォルトスタイル */
+a {
+    color: #007bff; /* リンクのデフォルト色 (青) */
+    text-decoration: none; /* 下線を消す */
+}
+
+/* 編集リンクの色 */
+a.edit-link {
+    color: rgb(43, 163, 0); /* 緑色に設定 */
+}
+
+/* 削除リンクの色 */
+a.delete-link {
+    color: red; /* 赤色に設定 */
+}
+

@@ -56,7 +56,12 @@ $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             // 出力データを行ごとに処理
             while($row = $result->fetch_assoc()) {
-                echo "<tr><td>" . htmlspecialchars($row["name"]) . "</td><td>" . htmlspecialchars($row["mail"]) . "</td><td><a href='edit.php?name=" . htmlspecialchars($row["name"]) . "&mail=" . htmlspecialchars($row["mail"]) . "'>編集</a> | <a href='javascript:void(0);' onclick=\"confirmDelete('" . htmlspecialchars($row["name"]) . "', '" . htmlspecialchars($row["mail"]) . "')\">削除</a></td></tr>";
+                echo "<tr class='data-row'><td>" . htmlspecialchars($row["name"]) . 
+                "</td><td>" . htmlspecialchars($row["mail"]) .
+                "</td><td><a href='edit.php?name=" . 
+                htmlspecialchars($row["name"]) . 
+                "&mail=" . htmlspecialchars($row["mail"]) . 
+                "' class='edit-link'>編集</a> | <a href='javascript:void(0);' onclick=\"confirmDelete('" . htmlspecialchars($row["name"]) . "', '" . htmlspecialchars($row["mail"]) . "')\" class='delete-link'>削除</a></td></tr>";
             }
         } else {
             echo "<tr><td colspan='3'>データがありません</td></tr>";
