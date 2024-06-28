@@ -42,7 +42,7 @@ if ($conn->connect_error) {
             <a href="../myPage/myPage.php">⚙ MyPage</a>
         </div>
         <div class="menu">
-            <a href="../play/index.html">OffLine Play</a>
+            <a href="../play/index.php">OffLine Play</a>
             <a href="#online">OnLine Play</a>
         </div>
     </div>
