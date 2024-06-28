@@ -1,17 +1,17 @@
 <?php
-session_start();
-if(isset($_SESSION['login'])==false){
-    print'ログインされていません。<br/>';
-    print'<a href="threerings/login/login.php">ログイン画面へ</a>';
-    exit();
-}
+// session_start();
+// if(isset($_SESSION['login'])==false){
+//     print'ログインされていません。<br/>';
+//     print'<a href="threerings/login/login.php">ログイン画面へ</a>';
+//     exit();
+// }
 
-// エラーレポートをオンにする
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// // エラーレポートをオンにする
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
-$servername = "localhost"; // データベースサーバーのIPアドレスまたはホスト名
-$username = "root"; // データベースユーザー名
+$servername = "172.16.3.130"; // データベースサーバーのIPアドレスまたはホスト名
+$username = "ivy_c239001"; // データベースユーザー名
 $password = ""; // データベースパスワード
 $dbname = "threerings"; // データベース名
 $port = 3306; // データベースのポート番号
