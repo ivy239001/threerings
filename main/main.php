@@ -48,13 +48,15 @@ if (!$result) {
     <title>ThreeRings</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        var bgm = new Audio('../audio/BBBBダンス.mp3'); // BGMファイルのパスを指定してください
+        var bgm = new Audio('../audio/Mystic_Path.mp3'); // BGMファイルのパスを指定してください
         var isMuted = false;
         var isPlaying = false;
 
         window.onload = function() {
             bgm.loop = true;
             bgm.volume = 0.5;
+            bgm.play();  // ページ読み込み時にBGMを再生
+            isPlaying = true;
         };
 
         function toggleBGM() {
