@@ -1,12 +1,11 @@
 <?php
 session_start();
 
-$dsn = "mysql:host=172.16.3.130; dbname=threerings; charset=utf8";
+$dsn = "mysql:host=172.16.3.130;dbname=threerings;charset=utf8";
 $username = "ivy_c239001";
 $password = "";
 $mail = $_POST['mail'];
 $pass = $_POST['pass'];
-
 
 try {
     $dbh = new PDO($dsn, $username, $password);
@@ -30,7 +29,7 @@ if ($member === false) {
 
 if (password_verify($pass, $member['pass'])) {
     // DBのユーザー情報をセッションに保存
-    $_SESSION['login'] = true;
+    $_SESSION['login'] = $member['mail'];
     $_SESSION['name'] = $member['name'];
 
     // 現在のログイン回数を取得し、1を追加
