@@ -36,11 +36,53 @@
                 <div>ユーザー名：xxx</div>
                 <div>ログイン回数：xxx</div>
             </div>
-            <div class="rules">ルール説明</div>
-            <div class="back">メニューへ戻る</div>
+            <div class="rules-container">
+                <div class="rules">
+                    <strong>ルール説明1</strong><br>
+                    スタートプレイヤーを決めて、時計回りにリング配置を行います。<br>
+                    自分のリングを１つ取り、ゲームエリア上の好きな箇所に配置します。<br>
+                    リングを置いた後はそのリングを移動することは出来ません。<br>
+                    自分の番にリングを置けない時はパスとなります。<br>
+                </div>
+                <div class="rules">
+                    <strong>ルール説明2</strong><br>
+                    ３つのリングが以下のように並んだ場合プレイヤーは勝利となります。<br>
+                    １、大・中・小の順番に縦・横・斜めのいずれかに１列に並んだ場合<br>
+                    ２、同じ大きさのリングを縦・横・斜めのいずれか１列に並んだ場合<br>
+                    ３，同じ箇所・大・中・小の３種類のリングが置かれた場合<br>
+                    以上３つが勝利条件となります。<br>
+                    いずれかの条件に満たした場合、GoGoボタンを押したら勝利となります。<br>
+                </div>
+            </div>
+            <div class="arrow-buttons">
+                <!-- ルール切り替えボタン -->
+                <button onclick="showNextRule()">次のルールへ</button>
+            </div>
+            <div class="back">
+                <!-- メニューへ戻るボタン -->
+                <button onclick="toggleRules()">ルールを表示／非表示</button>
+            </div>
         </div>
     </div>
+
     <script>
+        function toggleRules() {
+            var rules = document.querySelectorAll('.rules');
+            rules.forEach(rule => rule.classList.toggle('active'));
+        }
+
+        var currentRuleIndex = 0;
+        var rules = document.querySelectorAll('.rules');
+
+        function showNextRule() {
+            // 現在のルールを非表示にする
+            rules[currentRuleIndex].classList.remove('active');
+            
+            // 次のルールのインデックスを更新し、表示する
+            currentRuleIndex = (currentRuleIndex + 1) % rules.length;
+            rules[currentRuleIndex].classList.add('active');
+        }
+
         var container = document.querySelector("#unity-container");
         var canvas = document.querySelector("#unity-canvas");
         var loadingBar = document.querySelector("#unity-loading-bar");
