@@ -67,8 +67,8 @@
                 <button onclick="showNextRule()">次のルールへ</button>
             </div>
             <div class="back">
-                <!-- メニューへ戻るボタン -->
-                <button onclick="toggleRules()">戻る</button>
+            <!-- メニューへ戻るボタン -->
+            <button onclick="location.href='../main/main.php'">戻る</button>
             </div>
         </div>
     </div>
