@@ -45,3 +45,23 @@ body {
     color: white;
 }
 
+.logout {
+    margin-top: 20px;
+    
+}
+
+.logout a {
+
+    display: block;
+    font-size: 2em;
+    margin: 10px 0;
+    color: #d4af37;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.logout a:hover {
+    color: #fff;
+}
+
+

@@ -82,6 +82,12 @@ if (!$result) {
                 isMuted = true;
             }
         }
+
+        function logout() {
+            if (confirm('ログアウトしますか？')) {
+                window.location.href = 'threerings/login/logout.php';
+            }
+        }
     </script>
 </head>
 <body>
@@ -94,6 +100,10 @@ if (!$result) {
             <a href="../play/index.php">OffLine Play</a>
             <a href="#online">OnLine Play</a>
         </div>
+        <div class="logout">
+            <a href="logout.php">ログアウト</a>
+        </div>
+
         <div class="audio-control">
             <button onclick="toggleBGM()">BGM ON/OFF</button>
             <input type="range" min="0" max="100" value="50" oninput="setVolume(this.value)">
