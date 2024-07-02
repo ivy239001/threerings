@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="styles.css">
     <!-- ビューポート設定 -->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+    <style>
+        .rules {
+            display: none; /* 最初はすべての説明を非表示 */
+        }
+        .rules.active {
+            display: block; /* active クラスが付いたときに表示する */
+        }
+    </style>
 </head>
 <body>
     <!-- メインコンテナを追加して、Unityコンテナとサイドバーを含める -->
@@ -37,14 +45,14 @@
                 <div>ログイン回数：xxx</div>
             </div>
             <div class="rules-container">
-                <div class="rules">
+                <div class="rules active"> <!-- 最初の説明を表示する -->
                     <strong>ルール説明1</strong><br>
                     スタートプレイヤーを決めて、時計回りにリング配置を行います。<br>
                     自分のリングを１つ取り、ゲームエリア上の好きな箇所に配置します。<br>
                     リングを置いた後はそのリングを移動することは出来ません。<br>
                     自分の番にリングを置けない時はパスとなります。<br>
                 </div>
-                <div class="rules">
+                <div class="rules"> <!-- 2番目の説明は最初は非表示 -->
                     <strong>ルール説明2</strong><br>
                     ３つのリングが以下のように並んだ場合プレイヤーは勝利となります。<br>
                     １、大・中・小の順番に縦・横・斜めのいずれかに１列に並んだ場合<br>
@@ -60,25 +68,22 @@
             </div>
             <div class="back">
                 <!-- メニューへ戻るボタン -->
-                <button onclick="toggleRules()">ルールを表示／非表示</button>
+                <button onclick="toggleRules()">戻る</button>
             </div>
         </div>
     </div>
 
     <script>
+        var rulesContainer = document.querySelector('.rules-container');
+        var rules = document.querySelectorAll('.rules');
+        var currentRuleIndex = 0;
+
         function toggleRules() {
-            var rules = document.querySelectorAll('.rules');
-            rules.forEach(rule => rule.classList.toggle('active'));
+            rulesContainer.classList.toggle('active');
         }
 
-        var currentRuleIndex = 0;
-        var rules = document.querySelectorAll('.rules');
-
         function showNextRule() {
-            // 現在のルールを非表示にする
             rules[currentRuleIndex].classList.remove('active');
-            
-            // 次のルールのインデックスを更新し、表示する
             currentRuleIndex = (currentRuleIndex + 1) % rules.length;
             rules[currentRuleIndex].classList.add('active');
         }
