@@ -1,14 +1,14 @@
 <?php
-// session_start();
-// if(isset($_SESSION['login']) == false){
-//     print'ログインされていません。<br/>';
-//     print'<a href="../login/login_form.php">ログイン画面へ</a>';
-//     exit();
-// }
+session_start();
+if (isset($_SESSION['login']) == false) {
+    print 'ログインされていません。<br/>';
+    print '<a href="../login/login_form.php">ログイン画面へ</a>';
+    exit();
+}
 
-// // エラーレポートをオンにする
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
+// エラーレポートをオンにする
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 $servername = "172.16.3.130"; // データベースサーバーのIPアドレスまたはホスト名
 $username = "ivy_c239001"; // データベースユーザー名
@@ -24,11 +24,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// SQLクエリの作成
-$sql = "SELECT name, mail FROM login_02";
-$result = $conn->query($sql);
-?>
+// ログインしているユーザーの情報を取得
+$login_mail = $_SESSION['login']; // ログイン時に設定されたユーザー名
 
+// SQLクエリの作成
+$sql = "SELECT * FROM login_02 WHERE mail = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $login_mail); // 文字列としてバインド
+$stmt->execute();
+$result = $stmt->get_result();
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -55,7 +60,7 @@ $result = $conn->query($sql);
         <?php
         if ($result->num_rows > 0) {
             // 出力データを行ごとに処理
-            while($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
                 echo "<tr class='data-row'><td>" . htmlspecialchars($row["name"]) . 
                 "</td><td>" . htmlspecialchars($row["mail"]) .
                 "</td><td><a href='edit.php?name=" . 
@@ -68,7 +73,7 @@ $result = $conn->query($sql);
         }
         $conn->close();
         ?>
-    </table>
+ </table>
     <div class="back-button">
         <button onclick="location.href='../main/main.php'">戻る</button>
     </div>
