@@ -28,11 +28,18 @@ if ($conn->connect_error) {
 $login_mail = $_SESSION['login']; // ログイン時に設定されたユーザー名
 
 // SQLクエリの作成
-$sql = "SELECT * FROM login_02 WHERE mail = ?";
+$sql = "SELECT id, name, mail FROM login_02 WHERE mail = ?";
 $stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
 $stmt->bind_param("s", $login_mail); // 文字列としてバインド
 $stmt->execute();
 $result = $stmt->get_result();
+
+if (!$result) {
+    die("Query failed: " . $stmt->error);
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -42,9 +49,9 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="style.css">
     <title>myPage</title>
     <script>
-        function confirmDelete(name, mail) {
+        function confirmDelete(id, name, mail) {
             if (confirm(`本当にユーザー ${name} (${mail}) を削除しますか？`)) {
-                window.location.href = `delete.php?name=${name}&mail=${mail}`;
+                window.location.href = `delete.php?id=${id}&name=${name}&mail=${mail}`;
             }
         }
     </script>
@@ -63,17 +70,18 @@ $result = $stmt->get_result();
             while ($row = $result->fetch_assoc()) {
                 echo "<tr class='data-row'><td>" . htmlspecialchars($row["name"]) . 
                 "</td><td>" . htmlspecialchars($row["mail"]) .
-                "</td><td><a href='edit.php?name=" . 
-                htmlspecialchars($row["name"]) . 
+                "</td><td><a href='edit.php?id=" . 
+                htmlspecialchars($row["id"]) . 
+                "&name=" . htmlspecialchars($row["name"]) . 
                 "&mail=" . htmlspecialchars($row["mail"]) . 
-                "' class='edit-link'>編集</a> | <a href='javascript:void(0);' onclick=\"confirmDelete('" . htmlspecialchars($row["name"]) . "', '" . htmlspecialchars($row["mail"]) . "')\" class='delete-link'>削除</a></td></tr>";
+                "' class='edit-link'>編集</a> | <a href='javascript:void(0);' onclick=\"confirmDelete('" . htmlspecialchars($row["id"]) . "', '" . htmlspecialchars($row["name"]) . "', '" . htmlspecialchars($row["mail"]) . "')\" class='delete-link'>削除</a></td></tr>";
             }
         } else {
             echo "<tr><td colspan='3'>データがありません</td></tr>";
         }
         $conn->close();
         ?>
- </table>
+    </table>
     <div class="back-button">
         <button onclick="location.href='../main/main.php'">戻る</button>
     </div>
