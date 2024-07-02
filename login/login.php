@@ -7,6 +7,7 @@ $password = "";
 $mail = $_POST['mail'];
 $pass = $_POST['pass'];
 
+
 try {
     $dbh = new PDO($dsn, $username, $password);
 } catch (PDOException $e) {
