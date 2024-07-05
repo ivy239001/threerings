@@ -101,7 +101,7 @@ if (!$result) {
             <a href="#online">OnLine Play</a>
         </div>
         <div class="logout">
-            <a href="logout.php">ログアウト</a>
+            <a href="logout.php">Logout</a>
         </div>
 
         <div class="audio-control">
