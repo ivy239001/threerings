@@ -72,42 +72,37 @@ $login_count = 5; // 仮のログイン回数
                 <div class="rules active">
                     <strong>ルール説明①</strong><br>
                     <br>
-                    スタートプレイヤーを決めて、順番にリング配置を行います。<br>
-                    自分のリングを１つ選択し、ゲームエリア<br>上の好きな箇所に配置します。<br>
-                    <br>
-                    ※注意点としてリングを置いた後は<br>そのリングを移動することは出来ません。<br>
-                    ※自分の番にリングを置けない時は<br>パスとなります。<br>
+                    　４人（もしくは２人で２色使用）でプレーするボードゲームです。<br>
+                    　各プレーヤーはそれぞれ赤、青、緑、紫のリングを所持します。リングには大・中・小の３種類があり３つずつ所持しています。<br>
+                    　手持ちのリングの中から１つ選択しボードに配置します（配置後移動はできません）。<br>
+                    　異なるサイズのリングであれば１つのマスに配置することが可能です（同じサイズは配置できません）。<br>
+                    　最も早く勝利条件となる配置をできたプレーヤーが勝利となります。
+                    
                 </div>
                 <div class="rules">
                     <strong>ルール説明②</strong><br>
                     <br>
-                    ３つのリングが以下のように並んだ場合<br>プレイヤーは勝利となります。<br>
+                    ３つのリングが以下のように並んだ場合プレイヤーは勝利となります。<br>
                     <br>
-                    1⃣・大・中・小の順番に縦・横・斜めの<br>いずれか１列に並んだ場合<br>
+                    1⃣・同じ色で大・中・小または小・中・大の順番に縦・横・斜めのいずれか１列に並んだ場合<br>
                     <br>
-                    <img src="../graphic/junnbann.png" alt="順番のリング" width="300" height="300">
+                    <img src="../graphic/junnbann.png" alt="順番のリング" width="250" height="250"style="display: block; margin: auto;" />
                 </div>
                 <div class="rules">
                     <strong>ルール説明③</strong><br>
                     <br>
-                    2⃣・同じ大きさのリングが、縦・横・<br>ななめのいずれかが１列に並んだ場合<br>
+                    2⃣・同じ大きさで同じ色のリングが、縦・横・斜めのいずれかが１列に並んだ場合<br>
                     <br>
-                    <img src="../graphic/onaji.png" alt="同じ大きさのリング" width="300" height="300">
+                    <img src="../graphic/onaji.png" alt="同じ大きさのリング" width="250" height="250"style="display: block; margin: auto;" />
                 </div>
                 <div class="rules">
                     <strong>ルール説明④</strong><br>
                     <br>
-                    3⃣・同じ場所に・大・中・小の<br>３種類のリングが置かれた場合<br>
+                    3⃣・同じ場所に同じ色で大・中・小の３種類のリングが置かれた場合<br>
                     <br>
-                    <img src="../graphic/daisyou.png" alt="大・中・小のリング" width="300" height="300">
+                    <img src="../graphic/daisyou.png" alt="大・中・小のリング" width="250" height="250"style="display: block; margin: auto;" />
                 </div>
-                <div class="rules">
-                    <strong>ルール説明⑤</strong><br>
-                    <br>
-                    以上の３つが勝利条件となります。<br><br>
-                    いずれかの条件に満たした場合<br>
-                    GoGoボタンを押したら勝利となります。<br>
-                </div>
+                
             </div>
             <div class="arrow-buttons">
                 <button onclick="showNextRule()">次のルールへ</button>
