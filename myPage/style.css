@@ -85,3 +85,7 @@ a.delete-link {
 .back-button button:hover {
     background-color: #6c4800; /* マウスが乗った時の背景色 (濃い青) */
 }
+
+.update{
+    text-align: center;
+}
