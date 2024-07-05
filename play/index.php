@@ -70,30 +70,43 @@ $login_count = 5; // 仮のログイン回数
             </div>
             <div class="rules-container">
                 <div class="rules active">
-                    <strong>ルール説明1</strong><br>
-                    スタートプレイヤーを決めて、時計回りにリング配置を行います。<br>
-                    自分のリングを１つ取り、ゲームエリア上の好きな箇所に配置します。<br>
-                    リングを置いた後はそのリングを移動することは出来ません。<br>
-                    自分の番にリングを置けない時はパスとなります。<br>
+                    <strong>ルール説明①</strong><br>
+                    <br>
+                    スタートプレイヤーを決めて、順番にリング配置を行います。<br>
+                    自分のリングを１つ選択し、ゲームエリア<br>上の好きな箇所に配置します。<br>
+                    <br>
+                    ※注意点としてリングを置いた後は<br>そのリングを移動することは出来ません。<br>
+                    ※自分の番にリングを置けない時は<br>パスとなります。<br>
                 </div>
                 <div class="rules">
-                    <strong>ルール説明2</strong><br>
-                    ３つのリングが以下のように並んだ場合プレイヤーは勝利となります。<br>
-                    １、大・中・小の順番に縦・横・斜めのいずれかに１列に並んだ場合<br>
-                    ２、同じ大きさのリングを縦・横・斜めのいずれか１列に並んだ場合<br>
-                    ３，同じ箇所・大・中・小の３種類のリングが置かれた場合<br>
-                    以上３つが勝利条件となります。<br>
-                    いずれかの条件に満たした場合、GoGoボタンを押したら勝利となります。<br>
+                    <strong>ルール説明②</strong><br>
+                    <br>
+                    ３つのリングが以下のように並んだ場合<br>プレイヤーは勝利となります。<br>
+                    <br>
+                    1⃣・大・中・小の順番に縦・横・斜めの<br>いずれか１列に並んだ場合<br>
+                    <br>
+                    <img src="../graphic/junnbann.png" alt="順番のリング" width="300" height="300">
                 </div>
                 <div class="rules">
-                    <strong>ルール説明3</strong><br>
-                    ここに新しいルールの説明を追加します。<br>
-                    新しいルールの詳細を記述します。<br>
+                    <strong>ルール説明③</strong><br>
+                    <br>
+                    2⃣・同じ大きさのリングが、縦・横・<br>ななめのいずれかが１列に並んだ場合<br>
+                    <br>
+                    <img src="../graphic/onaji.png" alt="同じ大きさのリング" width="300" height="300">
                 </div>
                 <div class="rules">
-                    <strong>ルール説明4</strong><br>
-                    ここに更に新しいルールの説明を追加します。<br>
-                    更に詳細なルール内容を記述します。<br>
+                    <strong>ルール説明④</strong><br>
+                    <br>
+                    3⃣・同じ場所に・大・中・小の<br>３種類のリングが置かれた場合<br>
+                    <br>
+                    <img src="../graphic/daisyou.png" alt="大・中・小のリング" width="300" height="300">
+                </div>
+                <div class="rules">
+                    <strong>ルール説明⑤</strong><br>
+                    <br>
+                    以上の３つが勝利条件となります。<br><br>
+                    いずれかの条件に満たした場合<br>
+                    GoGoボタンを押したら勝利となります。<br>
                 </div>
             </div>
             <div class="arrow-buttons">
