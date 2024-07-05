@@ -1,0 +1,45 @@
+body { padding: 0; margin: 0 }
+  /* ページ全体の余白とマージンを0に設定して、要素がページの端まで広がるようにする */
+
+#unity-container { position: absolute }
+  /* Unityコンテナの位置を絶対配置に設定。親要素を基準にして配置される */
+
+  /* #unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%) } */
+#unity-container.unity-mobile { width: 100%; height: 100% }
+  /* モバイル用のUnityコンテナの幅と高さを100%に設定し、画面全体を占めるようにする */
+
+#unity-canvas { background: #231F20 }
+  /* Unityキャンバスの背景色を設定。ダークグレーの色 (HEXコード #231F20) */
+
+.unity-mobile #unity-canvas { width: 100%; height: 100% }
+  /* モバイルデバイス用のUnityキャンバスの幅と高さを100%に設定し、画面全体を占めるようにする */
+
+#unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none }
+  /* ローディングバーの位置を絶対配置に設定し、画面の中央に表示する。初期状態では非表示 (display: none) */
+
+#unity-logo { width: 154px; height: 130px; background: url('unity-logo-dark.png') no-repeat center }
+  /* Unityロゴの幅と高さを設定し、指定された画像を中央に表示する (背景画像として) */
+
+#unity-progress-bar-empty { width: 141px; height: 18px; margin-top: 10px; margin-left: 6.5px; background: url('progress-bar-empty-dark.png') no-repeat center }
+  /* 空の進捗バーの幅と高さを設定し、上下のマージンを設定。指定された画像を背景に使用する */
+
+#unity-progress-bar-full { width: 0%; height: 18px; margin-top: 10px; background: url('progress-bar-full-dark.png') no-repeat center }
+  /* 進捗が進んだ部分のバーの初期幅を0%に設定し、指定された画像を背景に使用する */
+
+#unity-footer { position: relative }
+  /* Unityフッターの位置を相対配置に設定。親要素に対して相対的に配置される */
+
+.unity-mobile #unity-footer { display: none }
+  /* モバイルデバイス用のUnityフッターを非表示に設定 */
+
+#unity-webgl-logo { float:left; width: 204px; height: 38px; background: url('webgl-logo.png') no-repeat center }
+  /* WebGLロゴの幅と高さを設定し、指定された画像を背景に使用。左側にフロート配置 */
+
+#unity-build-title { float: right; margin-right: 10px; line-height: 38px; font-family: arial; font-size: 18px }
+  /* Unityビルドのタイトルを右側にフロート配置し、マージンとフォントのスタイルを設定 */
+
+#unity-fullscreen-button { float: right; width: 38px; height: 38px; background: url('fullscreen-button.png') no-repeat center }
+  /* フルスクリーンボタンを右側にフロート配置し、幅と高さを設定。指定された画像を背景に使用する */
+
+#unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none }
+  /* Unityの警告メッセージの位置を絶対配置に設定し、画面中央の上部に表示。白背景で10pxのパディング。初期状態では非表示 (display: none) */
