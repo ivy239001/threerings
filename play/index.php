@@ -2,20 +2,13 @@
 session_start();
 require_once 'functions.php'; // ユーティリティ関数をインクルード
 
-//ここから本使用
 // セッションチェックとログイン情報の取得
-// checkLogin();
-// list($login_mail, $user_name) = getLoginDetails(); // ログイン情報を取得
+checkLogin();
+list($login_mail, $user_name) = getLoginDetails(); // ログイン情報を取得
 
 // データベース接続とログイン回数の取得
-// $dbh = getDatabaseConnection(); // データベース接続
-// $login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
-//ここまで本使用
-
-//ここからローカルテスト用（本使用の時はコメント化）
-$user_name = "ゲストユーザー";
-$login_count = 5; // 仮のログイン回数
-
+$dbh = getDatabaseConnection(); // データベース接続
+$login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
 ?>
 
 <!DOCTYPE html>
@@ -43,8 +36,8 @@ $login_count = 5; // 仮のログイン回数
 </head>
 
 <body>
+
     <div id="main-container">
-        <!-- Unity WebGL Player Section -->
         <div id="unity-container" class="unity-desktop">
             <canvas id="unity-canvas" width=800 height=600></canvas>
             <div id="unity-loading-bar">
@@ -53,13 +46,106 @@ $login_count = 5; // 仮のログイン回数
                     <div id="unity-progress-bar-full"></div>
                 </div>
             </div>
-            <div id="unity-warning"></div>
+            <div id="unity-warning"> </div>
             <div id="unity-footer">
                 <div id="unity-webgl-logo"></div>
                 <div id="unity-fullscreen-button"></div>
                 <div id="unity-build-title">ThreeRings</div>
             </div>
         </div>
+
+        <script>
+            var container = document.querySelector("#unity-container");
+            var canvas = document.querySelector("#unity-canvas");
+            var loadingBar = document.querySelector("#unity-loading-bar");
+            var progressBarFull = document.querySelector("#unity-progress-bar-full");
+            var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+            var warningBanner = document.querySelector("#unity-warning");
+
+            // Shows a temporary message banner/ribbon for a few seconds, or
+            // a permanent error message on top of the canvas if type=='error'.
+            // If type=='warning', a yellow highlight color is used.
+            // Modify or remove this function to customize the visually presented
+            // way that non-critical warnings and error messages are presented to the
+            // user.
+            function unityShowBanner(msg, type) {
+                function updateBannerVisibility() {
+                    warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+                }
+                var div = document.createElement('div');
+                div.innerHTML = msg;
+                warningBanner.appendChild(div);
+                if (type == 'error') div.style = 'background: red; padding: 10px;';
+                else {
+                    if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+                    setTimeout(function () {
+                        warningBanner.removeChild(div);
+                        updateBannerVisibility();
+                    }, 5000);
+                }
+                updateBannerVisibility();
+            }
+
+            var buildUrl = "Build";
+            var loaderUrl = buildUrl + "/play.loader.js";
+            var config = {
+                dataUrl: buildUrl + "/play.data.unityweb",
+                frameworkUrl: buildUrl + "/play.framework.js.unityweb",
+                codeUrl: buildUrl + "/play.wasm.unityweb",
+                streamingAssetsUrl: "StreamingAssets",
+                companyName: "DefaultCompany",
+                productName: "ThreeRings",
+                productVersion: "1.0",
+                showBanner: unityShowBanner,
+            };
+
+            // By default, Unity keeps WebGL canvas render target size matched with
+            // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+            // Set this to false if you want to decouple this synchronization from
+            // happening inside the engine, and you would instead like to size up
+            // the canvas DOM size and WebGL render target sizes yourself.
+            // config.matchWebGLToCanvasSize = false;
+
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                // Mobile device style: fill the whole browser client area with the game canvas:
+
+                var meta = document.createElement('meta');
+                meta.name = 'viewport';
+                meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+                document.getElementsByTagName('head')[0].appendChild(meta);
+                container.className = "unity-mobile";
+                canvas.className = "unity-mobile";
+
+                // To lower canvas resolution on mobile devices to gain some
+                // performance, uncomment the following line:
+                // config.devicePixelRatio = 1;
+
+                unityShowBanner('WebGL builds are not supported on mobile devices.');
+            } else {
+                // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
+                canvas.style.width = "800px";
+                canvas.style.height = "600px";
+            }
+
+            loadingBar.style.display = "block";
+
+            var script = document.createElement("script");
+            script.src = loaderUrl;
+            script.onload = () => {
+                createUnityInstance(canvas, config, (progress) => {
+                    progressBarFull.style.width = 100 * progress + "%";
+                }).then((unityInstance) => {
+                    loadingBar.style.display = "none";
+                    fullscreenButton.onclick = () => {
+                        unityInstance.SetFullscreen(1);
+                    };
+                }).catch((message) => {
+                    alert(message);
+                });
+            };
+            document.body.appendChild(script);
+        </script>
 
         <!-- Sidebar Section -->
         <div id="sidebar">
@@ -77,7 +163,7 @@ $login_count = 5; // 仮のログイン回数
                     　手持ちのリングの中から１つ選択しボードに配置します（配置後移動はできません）。<br>
                     　異なるサイズのリングであれば１つのマスに配置することが可能です（同じサイズは配置できません）。<br>
                     　最も早く勝利条件となる配置をできたプレーヤーが勝利となります。
-                    
+
                 </div>
                 <div class="rules">
                     <strong>ルール説明②</strong><br>
@@ -86,23 +172,23 @@ $login_count = 5; // 仮のログイン回数
                     <br>
                     1⃣・同じ色で大・中・小または小・中・大の順番に縦・横・斜めのいずれか１列に並んだ場合<br>
                     <br>
-                    <img src="../graphic/junnbann.png" alt="順番のリング" width="250" height="250"style="display: block; margin: auto;" />
+                    <img src="../graphic/junnbann.png" alt="順番のリング" width="250" height="250" style="display: block; margin: auto;" />
                 </div>
                 <div class="rules">
                     <strong>ルール説明③</strong><br>
                     <br>
                     2⃣・同じ大きさで同じ色のリングが、縦・横・斜めのいずれかが１列に並んだ場合<br>
                     <br>
-                    <img src="../graphic/onaji.png" alt="同じ大きさのリング" width="250" height="250"style="display: block; margin: auto;" />
+                    <img src="../graphic/onaji.png" alt="同じ大きさのリング" width="250" height="250" style="display: block; margin: auto;" />
                 </div>
                 <div class="rules">
                     <strong>ルール説明④</strong><br>
                     <br>
                     3⃣・同じ場所に同じ色で大・中・小の３種類のリングが置かれた場合<br>
                     <br>
-                    <img src="../graphic/daisyou.png" alt="大・中・小のリング" width="250" height="250"style="display: block; margin: auto;" />
+                    <img src="../graphic/daisyou.png" alt="大・中・小のリング" width="250" height="250" style="display: block; margin: auto;" />
                 </div>
-                
+
             </div>
             <div class="arrow-buttons">
                 <button onclick="showNextRule()">次のルールへ</button>
@@ -110,7 +196,6 @@ $login_count = 5; // 仮のログイン回数
             <div class="back">
                 <button onclick="goToMainPage()">戻る</button>
             </div>
-
         </div>
     </div>
 
@@ -126,7 +211,7 @@ $login_count = 5; // 仮のログイン回数
         // 次のルール表示ボタン
         function showNextRule() {
             var currentIndex = -1;
-            rules.forEach(function(rule, index) {
+            rules.forEach(function (rule, index) {
                 if (rule.classList.contains('active')) {
                     currentIndex = index;
                     rule.classList.remove('active'); // 現在のルールを非アクティブにする
@@ -136,12 +221,6 @@ $login_count = 5; // 仮のログイン回数
             var nextIndex = (currentIndex + 1) % rules.length;
             rules[nextIndex].classList.add('active'); // 次のルールをアクティブにする
         }
-        var container = document.querySelector("#unity-container");
-        var canvas = document.querySelector("#unity-canvas");
-        var loadingBar = document.querySelector("#unity-loading-bar");
-        var progressBarFull = document.querySelector("#unity-progress-bar-full");
-        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-        var warningBanner = document.querySelector("#unity-warning");
 
         // バナー表示関数
         function unityShowBanner(msg, type) {
@@ -154,7 +233,7 @@ $login_count = 5; // 仮のログイン回数
             if (type == 'error') div.style = 'background: red; padding: 10px;';
             else {
                 if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-                setTimeout(function() {
+                setTimeout(function () {
                     warningBanner.removeChild(div);
                     updateBannerVisibility();
                 }, 5000);
