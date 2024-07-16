@@ -2,13 +2,20 @@
 session_start();
 require_once 'functions.php'; // ユーティリティ関数をインクルード
 
+//ここから本使用
 // セッションチェックとログイン情報の取得
-checkLogin();
-list($login_mail, $user_name) = getLoginDetails(); // ログイン情報を取得
+// checkLogin();
+// list($login_mail, $user_name) = getLoginDetails(); // ログイン情報を取得
 
 // データベース接続とログイン回数の取得
-$dbh = getDatabaseConnection(); // データベース接続
-$login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
+// $dbh = getDatabaseConnection(); // データベース接続
+// $login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
+//ここまで本使用
+
+//ここからローカルテスト用（本使用の時はコメント化）
+$user_name = "ゲストユーザー";
+$login_count = 5; // 仮のログイン回数
+
 ?>
 
 <!DOCTYPE html>
@@ -33,10 +40,10 @@ $login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
             /* active クラスが付いたときに表示する */
         }
     </style>
+    
 </head>
 
 <body>
-
     <div id="main-container">
         <div id="unity-container" class="unity-desktop">
             <canvas id="unity-canvas" width=800 height=600></canvas>
@@ -53,7 +60,6 @@ $login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
                 <div id="unity-build-title">ThreeRings</div>
             </div>
         </div>
-
         <script>
             var container = document.querySelector("#unity-container");
             var canvas = document.querySelector("#unity-canvas");
@@ -78,7 +84,7 @@ $login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
                 if (type == 'error') div.style = 'background: red; padding: 10px;';
                 else {
                     if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-                    setTimeout(function () {
+                    setTimeout(function() {
                         warningBanner.removeChild(div);
                         updateBannerVisibility();
                     }, 5000);
@@ -196,6 +202,7 @@ $login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
             <div class="back">
                 <button onclick="goToMainPage()">戻る</button>
             </div>
+
         </div>
     </div>
 
@@ -211,7 +218,7 @@ $login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
         // 次のルール表示ボタン
         function showNextRule() {
             var currentIndex = -1;
-            rules.forEach(function (rule, index) {
+            rules.forEach(function(rule, index) {
                 if (rule.classList.contains('active')) {
                     currentIndex = index;
                     rule.classList.remove('active'); // 現在のルールを非アクティブにする
@@ -221,6 +228,12 @@ $login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
             var nextIndex = (currentIndex + 1) % rules.length;
             rules[nextIndex].classList.add('active'); // 次のルールをアクティブにする
         }
+        var container = document.querySelector("#unity-container");
+        var canvas = document.querySelector("#unity-canvas");
+        var loadingBar = document.querySelector("#unity-loading-bar");
+        var progressBarFull = document.querySelector("#unity-progress-bar-full");
+        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+        var warningBanner = document.querySelector("#unity-warning");
 
         // バナー表示関数
         function unityShowBanner(msg, type) {
@@ -233,7 +246,7 @@ $login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
             if (type == 'error') div.style = 'background: red; padding: 10px;';
             else {
                 if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-                setTimeout(function () {
+                setTimeout(function() {
                     warningBanner.removeChild(div);
                     updateBannerVisibility();
                 }, 5000);
