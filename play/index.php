@@ -2,19 +2,18 @@
 session_start();
 require_once 'functions.php'; // ユーティリティ関数をインクルード
 
-//ここから本使用
 // セッションチェックとログイン情報の取得
-// checkLogin();
-// list($login_mail, $user_name) = getLoginDetails(); // ログイン情報を取得
+checkLogin();
+list($login_mail, $user_name) = getLoginDetails(); // ログイン情報を取得
 
 // データベース接続とログイン回数の取得
-// $dbh = getDatabaseConnection(); // データベース接続
-// $login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
+$dbh = getDatabaseConnection(); // データベース接続
+$login_count = getLoginCount($dbh, $login_mail); // ログイン回数を取得
 //ここまで本使用
 
 //ここからローカルテスト用（本使用の時はコメント化）
-$user_name = "ゲストユーザー";
-$login_count = 5; // 仮のログイン回数
+// $user_name = "ゲストユーザー";
+// $login_count = 5; // 仮のログイン回数
 
 ?>
 
@@ -40,10 +39,11 @@ $login_count = 5; // 仮のログイン回数
             /* active クラスが付いたときに表示する */
         }
     </style>
-    
+
 </head>
 
 <body>
+    
     <div id="main-container">
         <div id="unity-container" class="unity-desktop">
             <canvas id="unity-canvas" width=800 height=600></canvas>
