@@ -4,8 +4,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    $servername = "172.16.3.130"; // データベースサーバーのIPアドレスまたはホスト名
-    $username = "ivy_c239001"; // データベースユーザー名
+    $servername = "localhost";
+    $username = "root";
+
     $password = ""; // データベースパスワード
     $dbname = "threerings"; // データベース名
     $port = 3306; // データベースのポート番号
@@ -47,12 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>編集ページ</title>
 </head>
+
 <body>
     <h2>ユーザー情報の編集</h2>
     <form method="post" action="edit.php">
@@ -73,4 +76,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button onclick="location.href='../myPage/myPage.php'">myPageへ戻る</button>
     </div>
 </body>
+
 </html>

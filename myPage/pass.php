@@ -4,9 +4,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    $servername = "172.16.3.130"; // データベースサーバーのIPアドレスまたはホスト名
-    $username = "ivy_c239001"; // データベースユーザー名
-    $password = ""; // データベースパスワード
+    $servername = "localhost";
+    $username = "root";
+        $password = ""; // データベースパスワード
     $dbname = "threerings"; // データベース名
     $port = 3306; // データベースのポート番号
 

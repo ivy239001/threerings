@@ -3,8 +3,8 @@
 $name = $_POST['name'];
 $mail = $_POST['mail'];
 $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT); // パスワードをハッシュ化
-$dsn = "mysql:host=172.16.3.130; dbname=threerings; charset=utf8";
-$username = "ivy_c239001";
+$dsn = "mysql:host=localhost;dbname=threerings;charset=utf8";
+$username = "root";
 $password = "";
 
 try {

@@ -17,8 +17,8 @@ function getLoginDetails() {
 
 // データベース接続関数
 function getDatabaseConnection() {
-    $dsn = "mysql:host=172.16.3.130;dbname=threerings;charset=utf8";
-    $username = "ivy_c239001";
+    $dsn = "mysql:host=localhost;dbname=threerings;charset=utf8";
+    $username = "root";
     $password = "";
     try {
         return new PDO($dsn, $username, $password);

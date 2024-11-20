@@ -10,8 +10,8 @@ if (!isset($_SESSION['login'])) {
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$servername = "172.16.3.130";
-$username = "ivy_c239001";
+$servername = "localhost";
+$username = "root";
 $password = "";
 $dbname = "threerings";
 $port = 3306;
